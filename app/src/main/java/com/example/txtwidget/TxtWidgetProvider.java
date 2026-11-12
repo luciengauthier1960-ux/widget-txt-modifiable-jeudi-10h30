@@ -53,6 +53,9 @@ public class TxtWidgetProvider extends AppWidgetProvider {
         views.setRemoteAdapter(R.id.widget_list, serviceIntent);
         views.setEmptyView(R.id.widget_list, R.id.widget_empty);
 
+        // Couleur de fond choisie dans l'application
+        views.setInt(R.id.widget_bg, "setColorFilter", Prefs.getColor(context));
+
         // Titre = nom du fichier ; un appui ouvre l'application pour changer de fichier
         String name = Prefs.getName(context);
         views.setTextViewText(R.id.widget_title,

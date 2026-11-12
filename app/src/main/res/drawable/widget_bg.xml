@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Forme blanche opaque : la couleur choisie dans l'application est appliquée par-dessus. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#FFF59D" />
+    <solid android:color="#FFFFFFFF" />
     <corners android:radius="16dp" />
 </shape>

@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.graphics.drawable.GradientDrawable;
+import android.view.View;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -24,6 +27,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.btn_refresh).setOnClickListener(v -> TxtWidgetProvider.refreshAll(this));
 
         updateLabel();
+        buildSwatches();
     }
 
     private void pickFile() {
@@ -80,6 +84,50 @@ public class MainActivity extends Activity {
         }
         String last = uri.getLastPathSegment();
         return last != null ? last : uri.toString();
+    }
+
+    // Couleurs claires, pour que le texte sombre reste lisible
+    private static final int[] COLORS = {
+            0xFFFFF59D, // jaune
+            0xFFFFFFFF, // blanc
+            0xFFBBDEFB, // bleu clair
+            0xFFC8E6C9, // vert clair
+            0xFFF8BBD0, // rose
+            0xFFFFE0B2, // orange clair
+            0xFFE0E0E0, // gris clair
+            0xFFE1BEE7  // lavande
+    };
+
+    private int dp(int value) {
+        return (int) (value * getResources().getDisplayMetrics().density + 0.5f);
+    }
+
+    /** Dessine les pastilles de couleur ; un appui change la couleur du widget. */
+    private void buildSwatches() {
+        GridLayout grid = findViewById(R.id.color_grid);
+        grid.removeAllViews();
+        int current = Prefs.getColor(this);
+        for (int color : COLORS) {
+            boolean selected = color == current;
+            GradientDrawable shape = new GradientDrawable();
+            shape.setShape(GradientDrawable.OVAL);
+            shape.setColor(color);
+            shape.setStroke(dp(selected ? 4 : 1), selected ? 0xFF3F51B5 : 0xFF888888);
+
+            View swatch = new View(this);
+            swatch.setBackground(shape);
+            GridLayout.LayoutParams lp = new GridLayout.LayoutParams();
+            lp.width = dp(48);
+            lp.height = dp(48);
+            lp.setMargins(dp(6), dp(6), dp(6), dp(6));
+            swatch.setLayoutParams(lp);
+            swatch.setOnClickListener(v -> {
+                Prefs.saveColor(this, color);
+                TxtWidgetProvider.refreshAll(this);
+                buildSwatches();
+            });
+            grid.addView(swatch);
+        }
     }
 
     private void updateLabel() {
