@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Widget Texte</string>
+    <string name="no_file">Aucun fichier choisi</string>
+    <string name="current_file">Fichier actuel : %1$s</string>
+    <string name="btn_pick">Choisir un fichier texte</string>
+    <string name="btn_refresh">Actualiser le widget</string>
+    <string name="help">1. Choisissez un fichier .txt.\n2. Appuyez longuement sur l\'écran d\'accueil, ouvrez « Widgets », puis ajoutez « Widget Texte ».\n3. Dans le widget, faites défiler le texte avec le doigt, touchez le titre pour changer de fichier et la flèche pour actualiser.</string>
+    <string name="widget_title_default">Widget texte</string>
+    <string name="widget_empty">Aucun texte à afficher. Touchez le titre pour choisir un fichier.</string>
+    <string name="widget_description">Affiche le contenu d\'un fichier texte</string>
+    <string name="refresh_desc">Actualiser</string>
+    <string name="edit_desc">Modifier le texte</string>
+    <string name="btn_save">Enregistrer</string>
+    <string name="btn_cancel">Annuler</string>
+    <string name="saved">Enregistré</string>
+    <string name="save_error">Impossible d\'enregistrer : %1$s</string>
+    <string name="edit_too_big">Fichier trop volumineux pour être modifié ici</string>
+    <string name="read_error">Impossible de lire le fichier : %1$s</string>
+</resources>
